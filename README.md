@@ -45,8 +45,10 @@
 - Chạy `python app/train.py` (huấn luyện và lưu model vào models/ - tạo thư mục nếu chưa có).
 
 ### Chạy demo/inference
-- Chạy Jupyter Notebook: `jupyter notebook demo/demo.ipynb` (tải data, tiền xử lý, train, predict, visualize).
-- Hoặc chạy script: `python app/predict.py` (dự đoán mẫu).
+- Truy cập streamlit.io
+- Chọn My app > Create app > Deploy a public app from GitHub > Paste GitHub URL
+- Gán link https://github.com/MinhHieu2410-HY/Machine-Learning---AQI/blob/main/streamlit_app.py vô GitHub URL
+- Click Deloy
 
 ## Cấu trúc thư mục dự án
 - app/: Source code chính (preprocess.py, train.py, predict.py, utils.py).
