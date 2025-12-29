@@ -51,7 +51,7 @@ with col1:
     PM10 = st.slider("PM10", 0.0, 600.0, 80.0, step=10.0)
 
 with col2:
-    PM25 = st.slider("PM2.5 ★ (yếu tố chính)", 0.0, 500.0, 50.0, step=5.0)
+    PM25 = st.slider("PM2.5", 0.0, 500.0, 50.0, step=5.0)
     SO2 = st.slider("SO₂", 0.0, 100.0, 10.0, step=2.0)
     Clouds = st.slider("Mây che phủ (%)", 0, 100, 50)
     Precipitation = st.slider("Lượng mưa (mm)", 0.0, 20.0, 0.0, step=0.5)
