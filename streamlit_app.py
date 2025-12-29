@@ -7,12 +7,27 @@ from sklearn.ensemble import RandomForestRegressor
 st.set_page_config(
     page_title="DỰ ĐOÁN AQI HÀ NỘI",
     page_icon="🌫️",
-    layout="centered"
+    layout="wide"  # Rộng hơn để sliders ở giữa đẹp
 )
 
-# ================== TIÊU ĐỀ CHÍNH ==================
-st.title("🌫️ DỰ ĐOÁN MỨC ĐỘ Ô NHIỄM KHÔNG KHÍ - AQI")
-st.markdown("**Mô hình Random Forest Regressor** | Dữ liệu chất lượng không khí Hà Nội")
+# ================== HEADER VỚI LOGO TRƯỜNG & MINH HỌA ==================
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("https://dean1665.vn/uploads/school/kt-hung-yen.jpg", width=200)  # Logo trường
+    st.title("🌫️ DỰ ĐOÁN MỨC ĐỘ Ô NHIỄM KHÔNG KHÍ - AQI")
+    st.markdown("**Mô hình Random Forest Regressor** | Dữ liệu chất lượng không khí Hà Nội thực tế")
+    
+st.markdown("---")
+
+# Minh họa AQI meter và ô nhiễm Hà Nội
+col_a, col_b, col_c = st.columns(3)
+with col_a:
+    st.image("https://media.istockphoto.com/id/1132417385/vector/air-quality-index-numerical-scale-vector-illustration.jpg?s=612x612&w=0&k=20&c=LgzM55kNUQd7ZGVq16O_xbrUJlSxXn9g1TIyK0z70xU=", caption="Thang đo AQI")
+with col_b:
+    st.image("https://www.shutterstock.com/image-vector/air-quality-index-aqi-measurement-600nw-2456376423.jpg", caption="Đồng hồ đo chất lượng không khí")
+with col_c:
+    st.image("https://cloudfront-us-east-2.images.arcpublishing.com/reuters/GEETLNZRTVK23AE2547YTSFMA4.jpg", caption="Ô nhiễm không khí tại Hà Nội")
+
 st.markdown("---")
 
 # ================== TẢI DỮ LIỆU & HUẤN LUYỆN MÔ HÌNH ==================
@@ -21,7 +36,6 @@ def load_and_train_model():
     url = "https://github.com/namanhnt/Hanoi-Air-Quality-Analysis/raw/main/Data/hanoi-aqi-weather-data.csv"
     df = pd.read_csv(url)
     
-    # Tiền xử lý
     df = df.drop(['UTC Time', 'City', 'Country Code', 'Timezone', 'UV Index'], axis=1, errors='ignore')
     
     features = ['CO', 'NO2', 'O3', 'PM10', 'PM25', 'SO2', 
@@ -30,55 +44,53 @@ def load_and_train_model():
     X = df[features]
     y = df['AQI']
     
-    # Huấn luyện Random Forest
     model = RandomForestRegressor(n_estimators=200, random_state=42, n_jobs=-1)
     model.fit(X, y)
     return model, features
 
-with st.spinner("Đang tải dữ liệu và huấn luyện mô hình..."):
+with st.spinner("Đang tải dữ liệu và huấn luyện mô hình Random Forest..."):
     rf_model, feature_names = load_and_train_model()
 
-st.success("✅ Mô hình đã sẵn sàng! Hãy điều chỉnh các thông số bên trái.")
+st.success("✅ Mô hình đã sẵn sàng!")
 
-# ================== SIDEBAR - ĐIỀU CHỈNH THÔNG SỐ ==================
-st.sidebar.header("🔧 Điều chỉnh thông số môi trường")
+# ================== ĐIỀU CHỈNH THÔNG SỐ MÔI TRƯỜNG Ở GIỮA TRANG ==================
+st.markdown("### 🔧 Điều chỉnh thông số môi trường")
 
-def get_user_input():
-    CO = st.sidebar.slider("CO", 0.0, 1000.0, 150.0, step=10.0)
-    NO2 = st.sidebar.slider("NO₂", 0.0, 200.0, 40.0, step=5.0)
-    O3 = st.sidebar.slider("O₃", 0.0, 200.0, 30.0, step=5.0)
-    PM10 = st.sidebar.slider("PM10", 0.0, 600.0, 80.0, step=10.0)
-    PM25 = st.sidebar.slider("PM2.5 ★ (yếu tố chính)", 0.0, 500.0, 50.0, step=5.0)
-    SO2 = st.sidebar.slider("SO₂", 0.0, 100.0, 10.0, step=2.0)
-    Clouds = st.sidebar.slider("Mây che phủ (%)", 0, 100, 50)
-    Precipitation = st.sidebar.slider("Lượng mưa (mm)", 0.0, 20.0, 0.0, step=0.5)
-    Pressure = st.sidebar.slider("Áp suất (hPa)", 990, 1030, 1010)
-    Humidity = st.sidebar.slider("Độ ẩm (%)", 30, 100, 70)
-    Temperature = st.sidebar.slider("Nhiệt độ (°C)", 10.0, 40.0, 25.0, step=0.5)
-    WindSpeed = st.sidebar.slider("Tốc độ gió (m/s)", 0.0, 10.0, 2.0, step=0.2)
-    
-    data = [CO, NO2, O3, PM10, PM25, SO2, Clouds, Precipitation, Pressure, Humidity, Temperature, WindSpeed]
-    return pd.DataFrame([data], columns=feature_names)
+# Chia sliders thành 3 cột để gọn gàng và ở giữa
+col1, col2, col3 = st.columns(3)
 
-input_df = get_user_input()
+with col1:
+    CO = st.slider("CO", 0.0, 1000.0, 150.0, step=10.0)
+    NO2 = st.slider("NO₂", 0.0, 200.0, 40.0, step=5.0)
+    O3 = st.slider("O₃", 0.0, 200.0, 30.0, step=5.0)
+    PM10 = st.slider("PM10", 0.0, 600.0, 80.0, step=10.0)
+
+with col2:
+    PM25 = st.slider("PM2.5 ★ (yếu tố chính)", 0.0, 500.0, 50.0, step=5.0)
+    SO2 = st.slider("SO₂", 0.0, 100.0, 10.0, step=2.0)
+    Clouds = st.slider("Mây che phủ (%)", 0, 100, 50)
+    Precipitation = st.slider("Lượng mưa (mm)", 0.0, 20.0, 0.0, step=0.5)
+
+with col3:
+    Pressure = st.slider("Áp suất (hPa)", 990, 1030, 1010)
+    Humidity = st.slider("Độ ẩm (%)", 30, 100, 70)
+    Temperature = st.slider("Nhiệt độ (°C)", 10.0, 40.0, 25.0, step=0.5)
+    WindSpeed = st.slider("Tốc độ gió (m/s)", 0.0, 10.0, 2.0, step=0.2)
+
+# Tạo input dataframe
+input_data = [CO, NO2, O3, PM10, PM25, SO2, Clouds, Precipitation, Pressure, Humidity, Temperature, WindSpeed]
+input_df = pd.DataFrame([input_data], columns=feature_names)
 
 # ================== DỰ ĐOÁN ==================
 prediction = rf_model.predict(input_df)[0]
 
-# Phân mức AQI + màu + lời khuyên
 def get_aqi_info(aqi):
-    if aqi <= 50:
-        return "TỐT", "🟢", "#00e400", "Không khí trong lành! Ra ngoài thoải mái 🌳"
-    elif aqi <= 100:
-        return "TRUNG BÌNH", "🟡", "#ffff00", "Không khí bình thường. Người nhạy cảm chú ý."
-    elif aqi <= 150:
-        return "KÉM", "🟠", "#ff7e00", "Trẻ em, người già nên hạn chế ra ngoài lâu."
-    elif aqi <= 200:
-        return "XẤU", "🔴", "#ff0000", "Ô nhiễm nặng. Nên đeo khẩu trang N95!"
-    elif aqi <= 300:
-        return "RẤT XẤU", "🟣", "#8f3f97", "Cảnh báo sức khỏe nghiêm trọng!"
-    else:
-        return "NGUY HIỂM", "🟤", "#7e0023", "Ở nhà thôi! Đóng cửa, bật máy lọc không khí 😷🏠"
+    if aqi <= 50: return "TỐT", "🟢", "#00e400", "Không khí trong lành! Ra ngoài thoải mái 🌳"
+    elif aqi <= 100: return "TRUNG BÌNH", "🟡", "#ffff00", "Không khí bình thường. Người nhạy cảm chú ý."
+    elif aqi <= 150: return "KÉM", "🟠", "#ff7e00", "Trẻ em, người già nên hạn chế ra ngoài lâu."
+    elif aqi <= 200: return "XẤU", "🔴", "#ff0000", "Ô nhiễm nặng. Nên đeo khẩu trang N95!"
+    elif aqi <= 300: return "RẤT XẤU", "🟣", "#8f3f97", "Cảnh báo sức khỏe nghiêm trọng!"
+    else: return "NGUY HIỂM", "🟤", "#7e0023", "Ở nhà thôi! Đóng cửa, bật máy lọc không khí 😷🏠"
 
 level, emoji, color, advice = get_aqi_info(prediction)
 
