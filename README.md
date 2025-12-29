@@ -47,7 +47,7 @@
 ### Chạy demo/inference
 - Truy cập streamlit.io
 - Chọn My app > Create app > Deploy a public app from GitHub > Paste GitHub URL
-- Gán link https://github.com/MinhHieu2410-HY/Machine-Learning---AQI/blob/main/streamlit_app.py vô GitHub URL
+- Gán link https://github.com/MinhHieu2410-HY/Machine-Learning---AQI/blob/main/demo/streamlit_app.py vô GitHub URL
 - Click Deloy
 
 ## Cấu trúc thư mục dự án
