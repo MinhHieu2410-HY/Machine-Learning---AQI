@@ -38,8 +38,6 @@ def load_and_train_model():
 with st.spinner("Đang tải dữ liệu và huấn luyện mô hình Random Forest..."):
     rf_model, feature_names = load_and_train_model()
 
-st.success("✅ Mô hình đã sẵn sàng!")
-
 # ================== ĐIỀU CHỈNH THÔNG SỐ MÔI TRƯỜNG Ở GIỮA TRANG ==================
 st.markdown("### 🔧 Điều chỉnh thông số môi trường")
 
@@ -88,8 +86,3 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.markdown(f"<h1 style='text-align: center; color: {color};'>AQI: {prediction:.1f}</h1>", unsafe_allow_html=True)
     st.markdown(f"<h2 style='text-align: center;'>{emoji} {level}</h2>", unsafe_allow_html=True)
-
-st.info(f"**💡 Lời khuyên:** {advice}")
-
-st.markdown("---")
-st.caption("🔥 Tip: Kéo **PM2.5** lên 250+ để thấy mức NGUY HIỂM như mùa đông Hà Nội thực tế!")
