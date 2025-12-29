@@ -13,21 +13,8 @@ st.set_page_config(
 # ================== HEADER VỚI LOGO TRƯỜNG & MINH HỌA ==================
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("https://dean1665.vn/uploads/school/kt-hung-yen.jpg", width=200)  # Logo trường
     st.title("🌫️ DỰ ĐOÁN MỨC ĐỘ Ô NHIỄM KHÔNG KHÍ - AQI")
-    st.markdown("**Mô hình Random Forest Regressor** | Dữ liệu chất lượng không khí Hà Nội thực tế")
     
-st.markdown("---")
-
-# Minh họa AQI meter và ô nhiễm Hà Nội
-col_a, col_b, col_c = st.columns(3)
-with col_a:
-    st.image("https://media.istockphoto.com/id/1132417385/vector/air-quality-index-numerical-scale-vector-illustration.jpg?s=612x612&w=0&k=20&c=LgzM55kNUQd7ZGVq16O_xbrUJlSxXn9g1TIyK0z70xU=", caption="Thang đo AQI")
-with col_b:
-    st.image("https://www.shutterstock.com/image-vector/air-quality-index-aqi-measurement-600nw-2456376423.jpg", caption="Đồng hồ đo chất lượng không khí")
-with col_c:
-    st.image("https://cloudfront-us-east-2.images.arcpublishing.com/reuters/GEETLNZRTVK23AE2547YTSFMA4.jpg", caption="Ô nhiễm không khí tại Hà Nội")
-
 st.markdown("---")
 
 # ================== TẢI DỮ LIỆU & HUẤN LUYỆN MÔ HÌNH ==================
