@@ -3,7 +3,7 @@
 
 ## Giới thiệu đề tài
 - **Bài toán**: Dự đoán chỉ số chất lượng không khí (AQI) tại Hà Nội dựa trên dữ liệu ô nhiễm (PM2.5, PM10, CO, NO2, O3, SO2) và thời tiết (nhiệt độ, độ ẩm, gió, mưa,...). Đây là bài toán hồi quy (dự đoán giá trị liên tục) và phân loại (mức độ ô nhiễm).
-- **Mục tiêu**: Xây dựng mô hình để cảnh báo sớm ô nhiễm, so sánh Linear Regression và Random Forest Regressor. Ý nghĩa thực tiễn: Bảo vệ sức khỏe cộng đồng tại Hà Nội, nơi ô nhiễm thường cao vào mùa đông.
+- **Mục tiêu**: Xây dựng mô hình để cảnh báo sớm ô nhiễm, so sánh Linear Regression và Random Forest Regressor. Ý nghĩa thực tiễn: Bảo vệ sức khỏe cộng đồng, nơi ô nhiễm thường cao.
 
 ## Dataset
 - **Nguồn data**: Từ GitHub của namanhnt - [Hanoi-Air-Quality-Analysis](https://github.com/namanhnt/Hanoi-Air-Quality-Analysis/blob/main/Data/hanoi-aqi-weather-data.csv).
@@ -17,7 +17,7 @@
 - Data mẫu nhỏ được đặt trong thư mục `data/` (data_sample.csv - 100 dòng đầu để demo).
 
 ## Pipeline
-1. **Tiền xử lý**: Đọc data, loại bỏ cột không cần (City, Timezone, v.v.), xử lý missing values (nếu có), xử lý outlier bằng IQR, chia train/test (80/20 theo thời gian để tránh data leakage).
+1. **Tiền xử lý**: Đọc data, loại bỏ cột không cần (City, Timezone, v.v.), xử lý missing values, xử lý outlier bằng IQR, chia train/test (80/20 theo thời gian để tránh data leakage).
 2. **Train**: Huấn luyện Linear Regression và Random Forest Regressor (với siêu tham số mặc định: 100 cây, không giới hạn độ sâu).
 3. **Evaluate**: Sử dụng MAE, RMSE, R² cho hồi quy; Accuracy, F1-score, Confusion Matrix, AUC cho phân loại (chuyển AQI thành nhị phân: Good ≤100, Bad >100).
 4. **Inference**: Dự đoán AQI mới dựa trên input đặc trưng.
