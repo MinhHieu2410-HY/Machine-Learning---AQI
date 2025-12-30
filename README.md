@@ -87,12 +87,13 @@ Lưu ý:
 ## Cấu trúc thư mục dự án
 - app/: Source code chính.
 - demo/: streamlit_app.py.
-- data/: Data mẫu nhỏ và hướng dẫn tải full data.
+- data/: Data mẫu nhỏ.
 - reports/: Báo cáo.
 - slides/: Slide thuyết trình.
 - requirements.txt
 - README.md
 - .gitignore
+- runtime.txt.
 
 ## Tác giả
 - Họ tên: Nguyễn Minh Hiếu
