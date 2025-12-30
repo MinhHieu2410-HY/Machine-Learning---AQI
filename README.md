@@ -14,7 +14,7 @@
   - CO, NO2, O3, PM10, PM25, SO2: Nồng độ chất ô nhiễm.
   - Clouds, Precipitation, Pressure, Relative Humidity, Temperature, UV Index, Wind Speed: Yếu tố thời tiết.
   - Các cột khác (City, Country Code, Timezone): Không dùng trong mô hình.
-- Data mẫu nhỏ được đặt trong thư mục `data/` (data_sample.csv - 100 dòng đầu để demo).
+- Data mẫu nhỏ được đặt trong thư mục `data/data.txt` (100 dòng đầu của dataset).
 
 ## Pipeline
 1. **Tiền xử lý**: Đọc data, loại bỏ cột không cần (City, Timezone, ...), xử lý missing values, xử lý outlier bằng IQR, chia train/test (80/20 theo thời gian).
