@@ -51,12 +51,11 @@
 - Click Deloy
 
 ## Cấu trúc thư mục dự án
-- app/: Source code chính (preprocess.py, train.py, predict.py, utils.py).
-- demo/: Notebook demo (demo.ipynb).
+- app/: Source code chính.
+- demo/: streamlit_app.py.
 - data/: Data mẫu nhỏ và hướng dẫn tải full data.
-- reports/: Báo cáo (Machine_Learning_Report.pdf).
-- slides/: Slide thuyết trình (Machine_Learning_Slides.pdf).
-- models/: Lưu model đã train (không commit lên GitHub, dùng .gitignore).
+- reports/: Báo cáo.
+- slides/: Slide thuyết trình.
 - requirements.txt
 - README.md
 - .gitignore
