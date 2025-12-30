@@ -17,14 +17,16 @@
 - Data mẫu nhỏ được đặt trong thư mục `data/` (data_sample.csv - 100 dòng đầu để demo).
 
 ## Pipeline
-1. **Tiền xử lý**: Đọc data, loại bỏ cột không cần (City, Timezone, v.v.), xử lý missing values, xử lý outlier bằng IQR, chia train/test (80/20 theo thời gian để tránh data leakage).
+1. **Tiền xử lý**: Đọc data, loại bỏ cột không cần (City, Timezone, ...), xử lý missing values, xử lý outlier bằng IQR, chia train/test (80/20 theo thời gian).
 2. **Train**: Huấn luyện Linear Regression và Random Forest Regressor (với siêu tham số mặc định: 100 cây, không giới hạn độ sâu).
-3. **Evaluate**: Sử dụng MAE, RMSE, R² cho hồi quy; Accuracy, F1-score, Confusion Matrix, AUC cho phân loại (chuyển AQI thành nhị phân: Good ≤100, Bad >100).
+3. **Evaluate**: Sử dụng Accuracy, F1-score, Confusion Matrix, AUC.
 4. **Inference**: Dự đoán AQI mới dựa trên input đặc trưng.
 
 ## Mô hình sử dụng
-- **Linear Regression**: Đơn giản, giả định tuyến tính. Lý do chọn: Baseline để so sánh, chạy nhanh.
-- **Random Forest Regressor**: Ensemble phi tuyến, xử lý tốt mối quan hệ phức tạp (ví dụ: PM2.5 và AQI phi tuyến). Lý do chọn: Độ chính xác cao, chống overfit, phù hợp dữ liệu môi trường biến động.
+- **Linear Regression**: Đơn giản, giả định tuyến tính.
+  Lý do chọn: Baseline để so sánh, chạy nhanh.
+- **Random Forest Regressor**: Ensemble phi tuyến, xử lý tốt mối quan hệ phức tạp.
+  Lý do chọn: Độ chính xác cao, chống overfit, phù hợp dữ liệu môi trường biến động.
 
 ## Kết quả
 - **Linear Regression**:
@@ -32,13 +34,12 @@
   - Phân loại nhị phân: Accuracy 80%, F1-score 0.78, AUC 0.50 (kém, không phân biệt tốt).
 - **Random Forest**:
   - MAE: ~10-15, RMSE: ~15-20, R²: ~0.95.
-  - Phân loại nhị phân: Accuracy 90%, F1-score 0.90, AUC 0.96 (xuất sắc).
-- So sánh: Random Forest vượt trội, bắt được xu hướng phi tuyến (PM2.5 quyết định 95-98% AQI).
-- Feature Importance (Random Forest): PM2.5 (cao nhất), PM10, NO2, Temperature, Wind Speed.
+  - Phân loại nhị phân: Accuracy 90%, F1-score 0.90, AUC 0.96 (tốt).
+- So sánh: Random Forest vượt trội, bắt được xu hướng phi tuyến.
 
 ## Hướng dẫn chạy
 ### Cài môi trường
-- Python 3.8+.
+- Python 3.11.
 - Cài dependencies: `pip install -r requirements.txt`.
 
 ### Chạy train
@@ -47,11 +48,11 @@
 - Chọn File > Upload notebook (hoặc Import > Upload), sau đó chọn file Machine_Learning.ipynb trên máy tính.
 - Chọn menu Runtime > Run all (Ctrl + F9).
 Lưu ý:
-- Cần tải file dataset hanoi-aqi-weather-data.csv trên Google Drive (đặt trong thư mục /MyDrive/Colab Notebooks/ hoặc bất kỳ vị trí nào bạn thích).
+- Cần tải file dataset hanoi-aqi-weather-data.csv trên Google Drive (đặt trong thư mục /MyDrive/Colab Notebooks/).
 - Nếu file dataset nằm ở vị trí khác, hãy sửa dòng code:
   df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/hanoi-aqi-weather-data.csv')
   thành đường dẫn đã lưu file.
-- Nếu không muốn dùng Drive, có thể upload file CSV trực tiếp lên Colab (dùng biểu tượng thư mục bên trái > Upload) rồi sửa đường dẫn thành /content/hanoi-aqi-weather-data.csv.
+- Nếu không muốn dùng Drive, có thể upload file CSV trực tiếp lên Colab (dùng biểu tượng thư mục bên trái > Upload) rồi sửa đường dẫn thành "/content/hanoi-aqi-weather-data.csv."
 
 2. Chạy trên VS Code (máy tính cá nhân):
 - Cài đặt và mở VS Code
