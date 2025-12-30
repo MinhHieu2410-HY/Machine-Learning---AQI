@@ -42,7 +42,40 @@
 - Cài dependencies: `pip install -r requirements.txt`.
 
 ### Chạy train
-- Chạy `python app/train.py` (huấn luyện và lưu model vào models/ - tạo thư mục nếu chưa có).
+1. Chạy trên Google Colab:
+- Truy cập https://colab.research.google.com
+- Chọn File > Upload notebook (hoặc Import > Upload), sau đó chọn file Machine_Learning.ipynb trên máy tính.
+- Chọn menu Runtime > Run all (Ctrl + F9).
+Lưu ý:
+- Cần tải file dataset hanoi-aqi-weather-data.csv trên Google Drive (đặt trong thư mục /MyDrive/Colab Notebooks/ hoặc bất kỳ vị trí nào bạn thích).
+- Nếu file dataset nằm ở vị trí khác, hãy sửa dòng code:
+  df = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/hanoi-aqi-weather-data.csv')
+  thành đường dẫn đã lưu file.
+- Nếu không muốn dùng Drive, có thể upload file CSV trực tiếp lên Colab (dùng biểu tượng thư mục bên trái > Upload) rồi sửa đường dẫn thành /content/hanoi-aqi-weather-data.csv.
+
+2. Chạy trên VS Code (máy tính cá nhân):
+- Cài đặt và mở VS Code
+- Cài extension Jupyter và Python từ Marketplace.
+- Mở file Machine_Learning.ipynb bằng VS Code.
+- Tạo hoặc chọn môi trường Python (dùng virtual environment).
+- Cài các thư viện cần thiết bằng lệnh trong terminal:
+  pip install pandas numpy matplotlib seaborn scikit-learn
+- Tải file dataset hanoi-aqi-weather-data.csv về máy.
+- Sửa dòng đọc file thành đường dẫn cục bộ vị trí lưu file code, ví dụ:
+  df = pd.read_csv('C:/Users/YourName/Documents/hanoi-aqi-weather-data.csv')
+- Chạy từng cell bằng nút Run Cell hoặc Shift + Enter, hoặc chạy toàn bộ bằng Run All.
+
+3. Chạy trên Jupyter Notebook/JupyterLab:
+- Cài đặt Python.
+- Mở terminal/command prompt, cài Jupyter:
+  pip install jupyter hoặc pip install jupyterlab.
+- Khởi động:
+  jupyter notebook hoặc jupyter lab
+- Chọn và mở file Machine_Learning.ipynb.
+- Cài thư viện:
+  pip install pandas numpy matplotlib seaborn scikit-learn
+- Tải dataset về máy và sửa đường dẫn đọc file thành đường dẫn cục bộ (giống như VS Code).
+- Chạy từng cell hoặc chọn Cell > Run All.
 
 ### Chạy demo/inference
 - Truy cập streamlit.io
